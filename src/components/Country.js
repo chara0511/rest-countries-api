@@ -1,8 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { MainContext } from "../context/MainContext";
 import Navbar from "./Navbar";
 
 const Country = () => {
+  const { country, getCountryByCode } = useContext(MainContext);
+
+  const params = useParams();
+
+  useEffect(() => {
+    getCountryByCode(params.id);
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -10,33 +19,40 @@ const Country = () => {
       <div>
         <Link to={"/"}>{"<= Back"}</Link>
 
-        <div>
-          <p>image</p>
-
+        {!country ? (
+          "loading"
+        ) : (
           <div>
-            <h1>Belgium</h1>
+            <img src={country.flag} alt="" />
 
             <div>
-              <p>Native Name: Belgie</p>
-              <p>Population: 11, 319,511</p>
-              <p>Region: Europe</p>
-              <p>Sub Region: Western Europe</p>
-              <p>Capital: Brussels</p>
-              <p>Top Level Domain: .be</p>
-              <p>Currencies: Euro</p>
-              <p>Language: Dutch, French, German</p>
-            </div>
+              <h1>{country.name}</h1>
 
-            <div>
-              <h3>Border Countries:</h3>
-              <ul>
-                <li>France</li>
-                <li>Germany</li>
-                <li>Netherlands</li>
-              </ul>
+              <div>
+                <p>Native Name: {country.nativeName}</p>
+                <p>Population: {country.population}</p>
+                <p>Region: {country.region}</p>
+                <p>Sub Region: {country.subregion}</p>
+                <p>Capital: {country.capital}</p>
+                <p>Top Level Domain: {country.topLevelDomain[0]}</p>
+                <p>Currencies: {country.currencies[0].name}</p>
+                <p>
+                  Language:{" "}
+                  {country.languages.map((language) => `${language.name}, `)}
+                </p>
+              </div>
+
+              <div>
+                <h3>Border Countries:</h3>
+                <ul>
+                  {country.borders.map((border) => (
+                    <li>{border}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

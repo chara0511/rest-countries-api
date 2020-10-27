@@ -5,9 +5,11 @@ const Countries = ({ countries }) => {
   return (
     <div>
       {countries.map((country) => (
-        <ul key={country.id}>
+        <ul key={country.alpha2Code}>
           <li>
-            <Link to={`country/${country.id}`}>image</Link>
+            <Link to={`country/${country.alpha2Code}`}>
+              <img src={country.flag} alt={country.name} />
+            </Link>
           </li>
           <li>{country.name}</li>
           <li>{country.population}</li>
