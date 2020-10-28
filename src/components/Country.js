@@ -4,12 +4,18 @@ import { MainContext } from "../context/MainContext";
 import Navbar from "./Navbar";
 
 const Country = () => {
-  const { country, getCountryByCode } = useContext(MainContext);
+  const { country, getCountryByCode, deleteCountryByCode } = useContext(
+    MainContext
+  );
 
   const params = useParams();
 
   useEffect(() => {
     getCountryByCode(params.id);
+
+    return () => deleteCountryByCode();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -38,7 +44,9 @@ const Country = () => {
                 <p>Currencies: {country.currencies[0].name}</p>
                 <p>
                   Language:{" "}
-                  {country.languages.map((language) => `${language.name}, `)}
+                  {country.languages.map((language) => (
+                    <span key={language.iso639_2}>{language.name}</span>
+                  ))}
                 </p>
               </div>
 
@@ -46,7 +54,7 @@ const Country = () => {
                 <h3>Border Countries:</h3>
                 <ul>
                   {country.borders.map((border) => (
-                    <li>{border}</li>
+                    <li key={border}>{border}</li>
                   ))}
                 </ul>
               </div>

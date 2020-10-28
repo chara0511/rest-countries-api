@@ -9,15 +9,19 @@ const Main = () => {
 
   useEffect(() => {
     getAllCountries();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <Navbar />
 
-      <Search />
+      <main className="font-sans px-5 py-10 bg-gray-very_light_gray">
+        <Search />
 
-      {!countries ? "loading" : <Countries countries={countries} />}
+        {!countries ? "loading" : <Countries countries={countries} />}
+      </main>
     </>
   );
 };

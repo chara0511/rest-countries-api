@@ -1,4 +1,8 @@
-import { GET_ALL_COUNTRIES, GET_CODE_COUNTRY } from "../types";
+import {
+  DELETE_CODE_COUNTRY,
+  GET_ALL_COUNTRIES,
+  GET_CODE_COUNTRY,
+} from "../types";
 
 export const MainReducer = (state, action) => {
   switch (action.type) {
@@ -12,6 +16,12 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         country: action.payload,
+      };
+
+    case DELETE_CODE_COUNTRY:
+      return {
+        ...state,
+        country: null,
       };
 
     default:

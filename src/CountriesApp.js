@@ -1,9 +1,13 @@
 import React, { useReducer } from "react";
 import axiosConfig from "./api/config";
+import MainRouter from "./routers/MainRouter";
 import { MainContext } from "./context/MainContext";
 import { MainReducer } from "./context/MainReducer";
-import MainRouter from "./routers/MainRouter";
-import { GET_ALL_COUNTRIES, GET_CODE_COUNTRY } from "./types";
+import {
+  DELETE_CODE_COUNTRY,
+  GET_ALL_COUNTRIES,
+  GET_CODE_COUNTRY,
+} from "./types";
 
 const CountriesApp = () => {
   const initialState = {
@@ -26,9 +30,11 @@ const CountriesApp = () => {
 
     const response = await axiosConfig.get(url);
 
-    console.log(response.data);
-
     dispatch({ type: GET_CODE_COUNTRY, payload: response.data });
+  };
+
+  const deleteCountryByCode = () => {
+    dispatch({ type: DELETE_CODE_COUNTRY });
   };
 
   return (
@@ -38,6 +44,7 @@ const CountriesApp = () => {
         country: state.country,
         getAllCountries,
         getCountryByCode,
+        deleteCountryByCode,
       }}
     >
       <MainRouter />
