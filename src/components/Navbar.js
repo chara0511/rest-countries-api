@@ -8,6 +8,7 @@ const Navbar = () => {
         <h1 className="font-extrabold text-blue-dark_blue">
           Where in the world?
         </h1>
+
         <div>
           <p className="font-semibold">
             <span>icon</span> Dark Mode
