@@ -24,6 +24,11 @@ module.exports = {
       fontFamily: {
         sans: ["Nunito Sans"],
       },
+      height: {
+        "h-72": "18rem",
+        "h-80": "20rem",
+        "h-88": "22rem",
+      },
       screens: {
         xs: "375px",
         "2xl": "1440px",
