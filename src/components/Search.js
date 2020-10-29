@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <div>
       <form action="" className="relative md:flex md:justify-between">
-        <span className="absolute px-5 py-4">
+        <span className="absolute px-5 py-4 my-2">
           <SearchIcon />
         </span>
 
@@ -15,7 +15,7 @@ const Search = () => {
           placeholder="Search for a country..."
         />
 
-        <div className="relative text-sm">
+        <div className="relative text-sm my-2">
           <button className="flex justify-between w-full sm:w-96 md:w-48 p-4 bg-white font-semibold">
             Filter by Region
             <span>

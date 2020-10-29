@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MainContext } from "../context/MainContext";
 import Navbar from "./Navbar";
+import { formatNumber } from "../utils";
+import { ArrowBackIcon } from "../icons";
 
 const Country = () => {
   const { country, getCountryByCode, deleteCountryByCode } = useContext(
@@ -22,36 +24,77 @@ const Country = () => {
     <>
       <Navbar />
 
-      <div>
-        <Link to={"/"}>{"<= Back"}</Link>
+      <div className="px-5 py-10 bg-gray-very_light_gray">
+        <Link
+          to={"/"}
+          className="flex justify-center py-2 w-24 md:w-48 mb-24 rounded shadow-normal"
+        >
+          <span className="mr-1">
+            <ArrowBackIcon />
+          </span>
+          Back
+        </Link>
 
         {!country ? (
           "loading"
         ) : (
-          <div>
-            <img src={country.flag} alt="" />
+          <div className="sm:flex sm:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
+            <img
+              className="sm:w-104 md:w-120 lg:w-wrapper lg:h-104"
+              src={country.flag}
+              alt=""
+            />
 
-            <div>
-              <h1>{country.name}</h1>
+            <div className="flex-auto">
+              <h1 className="text-2xl font-bold my-8">{country.name}</h1>
 
-              <div>
-                <p>Native Name: {country.nativeName}</p>
-                <p>Population: {country.population}</p>
-                <p>Region: {country.region}</p>
-                <p>Sub Region: {country.subregion}</p>
-                <p>Capital: {country.capital}</p>
-                <p>Top Level Domain: {country.topLevelDomain[0]}</p>
-                <p>Currencies: {country.currencies[0].name}</p>
-                <p>
+              <ul className="column-count">
+                <li className="font-semibold">
+                  Native Name:{" "}
+                  <span className="font-medium">{country.nativeName}</span>
+                </li>
+                <li className="font-semibold">
+                  Population:{" "}
+                  <span className="font-medium">
+                    {formatNumber(country.population)}
+                  </span>
+                </li>
+                <li className="font-semibold">
+                  Region: <span className="font-medium">{country.region}</span>
+                </li>
+                <li className="font-semibold">
+                  Sub Region:{" "}
+                  <span className="font-medium">{country.subregion}</span>
+                </li>
+                <li className="font-semibold">
+                  Capital:{" "}
+                  <span className="font-medium">{country.capital}</span>
+                </li>
+                <li className="font-semibold">
+                  Top Level Domain:{" "}
+                  <span className="font-medium">
+                    {country.topLevelDomain[0]}
+                  </span>
+                </li>
+                <li className="font-semibold">
+                  Currencies:{" "}
+                  <span className="font-medium">
+                    {country.currencies[0].name}
+                  </span>
+                </li>
+                <li className="font-semibold">
                   Language:{" "}
                   {country.languages.map((language) => (
-                    <span key={language.iso639_2}>{language.name}</span>
+                    <span className="font-medium" key={language.iso639_2}>
+                      {language.name}
+                    </span>
                   ))}
-                </p>
-              </div>
+                </li>
+              </ul>
 
-              <div>
-                <h3>Border Countries:</h3>
+              <div className="lg:my-16">
+                <h3 className="font-semibold">Border Countries:</h3>
+
                 <ul>
                   {country.borders.map((border) => (
                     <li key={border}>{border}</li>

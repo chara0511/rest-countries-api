@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        normal: "0px 20px 50px 0px rgba(206, 150, 150)",
-        active: "0px 10px 10px 0px rgba(250, 210, 210)",
+        normal: "0px 0px 20px -5px rgba(17, 21, 23, 0.5)",
+        active: "0px 0px 30px -10px rgba(17, 21, 23, 0.75)",
       },
       colors: {
         blue: {

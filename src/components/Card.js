@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatNumber } from "../utils";
 
 const Card = ({ country }) => {
   return (
@@ -17,7 +18,10 @@ const Card = ({ country }) => {
         <h1 className="text-xl font-extrabold">{country.name}</h1>
         <div className="py-5">
           <p className="font-semibold">
-            Population: <span className="font-light">{country.population}</span>
+            Population:{" "}
+            <span className="font-light">
+              {formatNumber(country.population)}
+            </span>
           </p>
           <p className="font-semibold">
             Region: <span className="font-light">{country.region}</span>
