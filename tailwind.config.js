@@ -29,11 +29,21 @@ module.exports = {
         "h-80": "20rem",
         "h-88": "22rem",
       },
+      rotate: {
+        145: "145deg",
+      },
       screens: {
         xs: "375px",
         "2xl": "1440px",
       },
       spacing: {
+        72: "18rem",
+        80: "20rem",
+        88: "22rem",
+        96: "24rem",
+        104: "26rem",
+        112: "28rem",
+        120: "30rem",
         wrapper: "35rem",
       },
     },
