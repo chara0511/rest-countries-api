@@ -1,3 +1,6 @@
+const plugin = require("tailwindcss/plugin");
+const selectorParser = require("postcss-selector-parser");
+
 module.exports = {
   future: {
     //removeDeprecatedGapUtilities: true,
@@ -48,6 +51,34 @@ module.exports = {
       },
     },
   },
-  variants: {},
-  plugins: [],
+  variants: {
+    textColor: ["responsive", "dark", "dark-hover", "hover", "focus"],
+    backgroundColor: ["responsive", "dark", "dark-hover", "hover", "focus"],
+  },
+  plugins: [
+    plugin(function ({ addVariant, prefix }) {
+      addVariant("dark", ({ modifySelectors, separator }) => {
+        modifySelectors(({ selector }) => {
+          return selectorParser((selectors) => {
+            selectors.walkClasses((sel) => {
+              sel.value = `dark${separator}${sel.value}`;
+              sel.parent.insertBefore(
+                sel,
+                selectorParser().astSync(prefix(".scheme-dark "))
+              );
+            });
+          }).processSync(selector);
+        });
+      });
+    }),
+    plugin(function ({ addVariant, e }) {
+      addVariant("dark-hover", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.scheme-dark .${e(
+            `dark\:hover${separator}${className}`
+          )}:hover`;
+        });
+      });
+    }),
+  ],
 };

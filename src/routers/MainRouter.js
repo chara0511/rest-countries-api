@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Route,
   BrowserRouter as Router,
@@ -7,11 +7,14 @@ import {
 } from "react-router-dom";
 import Country from "../components/Country";
 import Main from "../components/Main";
+import { MainContext } from "../context/MainContext";
 
 const MainRouter = () => {
+  const { darkMode } = useContext(MainContext);
+
   return (
     <Router>
-      <div>
+      <div className={`${darkMode ? "scheme-dark" : ""}`}>
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/country/:id" component={Country} />

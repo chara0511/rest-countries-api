@@ -21,24 +21,26 @@ const Country = () => {
   }, []);
 
   return (
-    <>
+    <div className="h-screen">
       <Navbar />
 
-      <div className="px-5 py-10 bg-gray-very_light_gray">
-        <Link
-          to={"/"}
-          className="flex justify-center py-2 w-24 md:w-48 mb-24 rounded shadow-normal"
-        >
-          <span className="mr-1">
-            <ArrowBackIcon />
-          </span>
-          Back
-        </Link>
+      <div className=" bg-gray-very_light_gray dark:bg-blue-semi_dark_blue dark:text-gray-very_light_gray">
+        <div className="max-w-screen-xl m-auto px-5 py-5">
+          <Link
+            to={"/"}
+            className="flex justify-center py-2 w-24 md:w-48 my-12 rounded shadow-normal dark:bg-blue-dark_blue"
+          >
+            <span className="mr-1">
+              <ArrowBackIcon />
+            </span>
+            Back
+          </Link>
+        </div>
 
         {!country ? (
           "loading"
         ) : (
-          <div className="sm:flex sm:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
+          <div className="max-w-screen-xl m-auto px-5 sm:flex sm:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
             <img
               className="sm:w-104 md:w-120 lg:w-wrapper lg:h-104"
               src={country.flag}
@@ -105,7 +107,7 @@ const Country = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

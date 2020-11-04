@@ -14,7 +14,7 @@ const Card = ({ country }) => {
         </Link>
       </div>
 
-      <div className="bg-white rounded-b-md shadow-xs p-5">
+      <div className="bg-white rounded-b-md shadow-xs p-5 dark:bg-blue-dark_blue dark:text-gray-very_light_gray">
         <h1 className="text-xl font-extrabold">{country.name}</h1>
         <div className="py-5">
           <p className="font-semibold">

@@ -1,5 +1,7 @@
 import {
+  ACTIVE_DARK_MODE,
   DELETE_CODE_COUNTRY,
+  ERROR_GET_ALL_COUNTRIES,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
 } from "../types";
@@ -22,6 +24,18 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         country: null,
+      };
+
+    case ERROR_GET_ALL_COUNTRIES:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case ACTIVE_DARK_MODE:
+      return {
+        ...state,
+        darkMode: action.payload,
       };
 
     default:
