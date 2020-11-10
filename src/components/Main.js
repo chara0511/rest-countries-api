@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { MainContext } from "../context/MainContext";
 import Countries from "./Countries";
 import Navbar from "./Navbar";
+import Pagination from "./Pagination";
 import Search from "./Search";
 
 const Main = () => {
@@ -26,7 +27,11 @@ const Main = () => {
               {error ? error : "loading..."}
             </p>
           ) : (
-            <Countries countries={countries} />
+            <>
+              <Countries countries={countries} />
+
+              <Pagination />
+            </>
           )}
         </div>
       </main>

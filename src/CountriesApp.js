@@ -7,16 +7,19 @@ import {
   ACTIVE_DARK_MODE,
   DELETE_CODE_COUNTRY,
   ERROR_GET_ALL_COUNTRIES,
+  ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
+  SHOW_MODAL,
 } from "./types";
 
 const CountriesApp = () => {
   const initialState = {
     countries: null,
     country: null,
-    error: null,
     darkMode: false,
+    error: null,
+    modal: null,
   };
 
   const [state, dispatch] = useReducer(MainReducer, initialState);
@@ -27,7 +30,11 @@ const CountriesApp = () => {
 
       const response = await axiosConfig.get(url);
 
-      dispatch({ type: GET_ALL_COUNTRIES, payload: response.data });
+      const countries = response.data;
+
+      countries.slice(0, 8);
+
+      dispatch({ type: GET_ALL_COUNTRIES, payload: countries });
     } catch (error) {
       dispatch({
         type: ERROR_GET_ALL_COUNTRIES,
@@ -37,11 +44,18 @@ const CountriesApp = () => {
   };
 
   const getCountryByCode = async (code) => {
-    const url = `/alpha/${code}`;
+    try {
+      const url = `/alpha/${code}`;
 
-    const response = await axiosConfig.get(url);
+      const response = await axiosConfig.get(url);
 
-    dispatch({ type: GET_CODE_COUNTRY, payload: response.data });
+      dispatch({ type: GET_CODE_COUNTRY, payload: response.data });
+    } catch (error) {
+      dispatch({
+        type: ERROR_GET_COUNTRY,
+        payload: error.message,
+      });
+    }
   };
 
   const deleteCountryByCode = () => {
@@ -52,17 +66,23 @@ const CountriesApp = () => {
     dispatch({ type: ACTIVE_DARK_MODE, payload: !state.darkMode });
   };
 
+  const showModal = () => {
+    dispatch({ type: SHOW_MODAL });
+  };
+
   return (
     <MainContext.Provider
       value={{
         countries: state.countries,
         country: state.country,
-        error: state.error,
         darkMode: state.darkMode,
+        error: state.error,
+        modal: state.modal,
         getAllCountries,
         getCountryByCode,
         deleteCountryByCode,
         activeDarkMode,
+        showModal,
       }}
     >
       <MainRouter />

@@ -2,8 +2,10 @@ import {
   ACTIVE_DARK_MODE,
   DELETE_CODE_COUNTRY,
   ERROR_GET_ALL_COUNTRIES,
+  ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
+  SHOW_MODAL,
 } from "../types";
 
 export const MainReducer = (state, action) => {
@@ -27,6 +29,7 @@ export const MainReducer = (state, action) => {
       };
 
     case ERROR_GET_ALL_COUNTRIES:
+    case ERROR_GET_COUNTRY:
       return {
         ...state,
         error: action.payload,
@@ -36,6 +39,12 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         darkMode: action.payload,
+      };
+
+    case SHOW_MODAL:
+      return {
+        ...state,
+        modal: !state.modal,
       };
 
     default:
