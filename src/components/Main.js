@@ -1,18 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MainContext } from "../context/MainContext";
 import Countries from "./Countries";
 import Navbar from "./Navbar";
-import Pagination from "./Pagination";
+import MoreCountries from "./MoreCountries";
 import Search from "./Search";
 
 const Main = () => {
   const { countries, error, getAllCountries } = useContext(MainContext);
+
+  const [countriesToShow, setCountriesToShow] = useState([]);
+  const [next, setNext] = useState(8);
 
   useEffect(() => {
     getAllCountries();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const countriesPerPage = 8;
+  let arrayForHoldingCountries = [];
+
+  const loopWithSlice = (start, end) => {
+    if (countries) {
+      const slicedCountries = countries.slice(start, end);
+
+      arrayForHoldingCountries = [
+        ...arrayForHoldingCountries,
+        ...slicedCountries,
+      ];
+      setCountriesToShow(arrayForHoldingCountries);
+    }
+  };
+
+  useEffect(() => {
+    loopWithSlice(0, countriesPerPage);
+  }, [countries]);
+
+  const handleShowMoreCountries = () => {
+    loopWithSlice(0, next + countriesPerPage);
+    setNext(next + countriesPerPage);
+  };
 
   return (
     <div>
@@ -28,9 +55,11 @@ const Main = () => {
             </p>
           ) : (
             <>
-              <Countries countries={countries} />
+              <Countries countries={countriesToShow} />
 
-              <Pagination />
+              <MoreCountries
+                handleShowMoreCountries={handleShowMoreCountries}
+              />
             </>
           )}
         </div>

@@ -24,17 +24,13 @@ const CountriesApp = () => {
 
   const [state, dispatch] = useReducer(MainReducer, initialState);
 
-  const getAllCountries = async () => {
+  const getAllCountries = async (lastItem) => {
     try {
       const url = "/all?fields=name;population;region;capital;alpha2Code;flag";
 
       const response = await axiosConfig.get(url);
 
-      const countries = response.data;
-
-      countries.slice(0, 8);
-
-      dispatch({ type: GET_ALL_COUNTRIES, payload: countries });
+      dispatch({ type: GET_ALL_COUNTRIES, payload: response.data });
     } catch (error) {
       dispatch({
         type: ERROR_GET_ALL_COUNTRIES,
