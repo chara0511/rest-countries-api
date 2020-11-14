@@ -5,6 +5,8 @@ import {
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
+  GET_COUNTRIES_BY_REGION,
+  GET_COUNTRIES_TO_SHOW,
   SHOW_MODAL,
 } from "../types";
 
@@ -20,6 +22,20 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         country: action.payload,
+      };
+
+    case GET_COUNTRIES_TO_SHOW:
+      return {
+        ...state,
+        countriesToShow: [...action.payload],
+      };
+
+    case GET_COUNTRIES_BY_REGION:
+      return {
+        ...state,
+        countriesToShow: state.countries.filter(
+          (country) => country.region === action.payload
+        ),
       };
 
     case DELETE_CODE_COUNTRY:

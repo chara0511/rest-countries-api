@@ -6,9 +6,15 @@ import MoreCountries from "./MoreCountries";
 import Search from "./Search";
 
 const Main = () => {
-  const { countries, error, getAllCountries } = useContext(MainContext);
+  const {
+    countries,
+    countriesToShow,
+    error,
+    getAllCountries,
+    getCountriesToShow,
+  } = useContext(MainContext);
 
-  const [countriesToShow, setCountriesToShow] = useState([]);
+  //const [countriesToShow, setCountriesToShow] = useState([]);
   const [next, setNext] = useState(8);
 
   useEffect(() => {
@@ -18,22 +24,19 @@ const Main = () => {
   }, []);
 
   const countriesPerPage = 8;
-  let arrayForHoldingCountries = [];
 
   const loopWithSlice = (start, end) => {
     if (countries) {
       const slicedCountries = countries.slice(start, end);
 
-      arrayForHoldingCountries = [
-        ...arrayForHoldingCountries,
-        ...slicedCountries,
-      ];
-      setCountriesToShow(arrayForHoldingCountries);
+      getCountriesToShow(slicedCountries);
     }
   };
 
   useEffect(() => {
     loopWithSlice(0, countriesPerPage);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries]);
 
   const handleShowMoreCountries = () => {
@@ -47,9 +50,9 @@ const Main = () => {
 
       <main className="font-sans bg-gray-very_light_gray dark:bg-blue-semi_dark_blue">
         <div className="max-w-screen-xl m-auto px-5 py-10">
-          <Search />
+          <Search countries={countriesToShow} />
 
-          {!countries ? (
+          {!countriesToShow ? (
             <p className="max-w-screen-xl m-auto">
               {error ? error : "loading..."}
             </p>

@@ -4,10 +4,18 @@ import { MainContext } from "../context/MainContext";
 import { ArrowDownIcon, SearchIcon } from "../icons";
 
 const Search = () => {
-  const { modal, showModal } = useContext(MainContext);
+  const { modal, showModal, getCountryByRegion } = useContext(MainContext);
 
   const handleShowModal = (e) => {
     e.preventDefault();
+
+    showModal();
+  };
+
+  const handleCountriesByRegion = (e) => {
+    e.preventDefault();
+
+    getCountryByRegion(e.target.value);
 
     showModal();
   };
@@ -37,25 +45,50 @@ const Search = () => {
           </button>
 
           {modal && (
-            <ul className="absolute w-full sm:w-96 md:w-48 mt-2 p-4 bg-white dark:bg-blue-dark_blue dark:text-gray-very_light_gray  rounded">
+            <ul className="absolute w-full sm:w-96 md:w-48 mt-2 p-4 bg-white dark:bg-blue-dark_blue dark:text-gray-very_light_gray rounded">
               <li>
-                <button>Africa</button>
+                <input
+                  className="w-full text-left cursor-pointer mt-1"
+                  type="submit"
+                  value="Africa"
+                  onClick={handleCountriesByRegion}
+                />
               </li>
 
               <li>
-                <button>America</button>
+                <input
+                  className="w-full text-left cursor-pointer mt-1"
+                  type="submit"
+                  value="Americas"
+                  onClick={handleCountriesByRegion}
+                />
               </li>
 
               <li>
-                <button>Asia</button>
+                <input
+                  className="w-full text-left cursor-pointer mt-1"
+                  type="submit"
+                  value="Asia"
+                  onClick={handleCountriesByRegion}
+                />
               </li>
 
               <li>
-                <button>Europe</button>
+                <input
+                  className="w-full text-left cursor-pointer mt-1"
+                  type="submit"
+                  value="Europe"
+                  onClick={handleCountriesByRegion}
+                />
               </li>
 
               <li>
-                <button>Oceania</button>
+                <input
+                  className="w-full text-left capitalize cursor-pointer mt-1"
+                  type="submit"
+                  value="Oceania"
+                  onClick={handleCountriesByRegion}
+                />
               </li>
             </ul>
           )}

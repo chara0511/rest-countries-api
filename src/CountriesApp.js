@@ -10,12 +10,15 @@ import {
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
+  GET_COUNTRIES_BY_REGION,
+  GET_COUNTRIES_TO_SHOW,
   SHOW_MODAL,
 } from "./types";
 
 const CountriesApp = () => {
   const initialState = {
     countries: null,
+    countriesToShow: [],
     country: null,
     darkMode: false,
     error: null,
@@ -24,7 +27,7 @@ const CountriesApp = () => {
 
   const [state, dispatch] = useReducer(MainReducer, initialState);
 
-  const getAllCountries = async (lastItem) => {
+  const getAllCountries = async () => {
     try {
       const url = "/all?fields=name;population;region;capital;alpha2Code;flag";
 
@@ -37,6 +40,20 @@ const CountriesApp = () => {
         payload: error.message,
       });
     }
+  };
+
+  const getCountriesToShow = (countries) => {
+    dispatch({
+      type: GET_COUNTRIES_TO_SHOW,
+      payload: countries,
+    });
+  };
+
+  const getCountryByRegion = (region) => {
+    dispatch({
+      type: GET_COUNTRIES_BY_REGION,
+      payload: region,
+    });
   };
 
   const getCountryByCode = async (code) => {
@@ -70,12 +87,15 @@ const CountriesApp = () => {
     <MainContext.Provider
       value={{
         countries: state.countries,
+        countriesToShow: state.countriesToShow,
         country: state.country,
         darkMode: state.darkMode,
         error: state.error,
         modal: state.modal,
         getAllCountries,
+        getCountryByRegion,
         getCountryByCode,
+        getCountriesToShow,
         deleteCountryByCode,
         activeDarkMode,
         showModal,
