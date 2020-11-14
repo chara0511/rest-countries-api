@@ -7,6 +7,7 @@ import {
   GET_CODE_COUNTRY,
   GET_COUNTRIES_BY_REGION,
   GET_COUNTRIES_TO_SHOW,
+  GET_COUNTRIES_BY_TAG,
   SHOW_MODAL,
 } from "../types";
 
@@ -28,6 +29,16 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         countriesToShow: [...action.payload],
+      };
+
+    case GET_COUNTRIES_BY_TAG:
+      return {
+        ...state,
+        countriesToShow: state.countries.filter((country) =>
+          country.name.includes(
+            action.payload.charAt(0).toUpperCase() + action.payload.slice(1)
+          )
+        ),
       };
 
     case GET_COUNTRIES_BY_REGION:

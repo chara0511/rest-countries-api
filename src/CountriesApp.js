@@ -10,6 +10,7 @@ import {
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
+  GET_COUNTRIES_BY_TAG,
   GET_COUNTRIES_BY_REGION,
   GET_COUNTRIES_TO_SHOW,
   SHOW_MODAL,
@@ -49,7 +50,14 @@ const CountriesApp = () => {
     });
   };
 
-  const getCountryByRegion = (region) => {
+  const getCountriesByTag = (value) => {
+    dispatch({
+      type: GET_COUNTRIES_BY_TAG,
+      payload: value,
+    });
+  };
+
+  const getCountriesByRegion = (region) => {
     dispatch({
       type: GET_COUNTRIES_BY_REGION,
       payload: region,
@@ -93,7 +101,8 @@ const CountriesApp = () => {
         error: state.error,
         modal: state.modal,
         getAllCountries,
-        getCountryByRegion,
+        getCountriesByTag,
+        getCountriesByRegion,
         getCountryByCode,
         getCountriesToShow,
         deleteCountryByCode,
