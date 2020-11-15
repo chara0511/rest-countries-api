@@ -61,6 +61,8 @@ const Main = () => {
               <Countries countries={countriesToShow} />
 
               <MoreCountries
+                countries={countries}
+                next={next}
                 handleShowMoreCountries={handleShowMoreCountries}
               />
             </>

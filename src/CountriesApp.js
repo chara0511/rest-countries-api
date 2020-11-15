@@ -10,10 +10,10 @@ import {
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
-  GET_COUNTRIES_BY_TAG,
-  GET_COUNTRIES_BY_REGION,
   GET_COUNTRIES_TO_SHOW,
   SHOW_MODAL,
+  GET_REGION,
+  GET_TAG,
 } from "./types";
 
 const CountriesApp = () => {
@@ -24,6 +24,8 @@ const CountriesApp = () => {
     darkMode: false,
     error: null,
     modal: null,
+    region: "",
+    tag: "",
   };
 
   const [state, dispatch] = useReducer(MainReducer, initialState);
@@ -50,18 +52,44 @@ const CountriesApp = () => {
     });
   };
 
-  const getCountriesByTag = (value) => {
+  //new code
+  const getTag = (tag) => {
+    dispatch({ type: GET_TAG, payload: tag });
+  };
+
+  const getCountriesByTag = (tag) => {
+    const filteredCountriesByRegion = state.countries.filter((country) =>
+      country.region.toLowerCase().includes(state.region.toLowerCase())
+    );
+
     dispatch({
-      type: GET_COUNTRIES_BY_TAG,
-      payload: value,
+      type: GET_COUNTRIES_TO_SHOW,
+      payload: filteredCountriesByRegion.filter((country) =>
+        country.name.toLowerCase().includes(tag.toLowerCase())
+      ),
     });
+
+    getTag(tag);
+  };
+
+  //new code
+  const getRegion = (region) => {
+    dispatch({ type: GET_REGION, payload: region });
   };
 
   const getCountriesByRegion = (region) => {
+    const filteredCountriesByRegion = state.countries.filter((country) =>
+      country.name.toLowerCase().includes(state.tag)
+    );
+
     dispatch({
-      type: GET_COUNTRIES_BY_REGION,
-      payload: region,
+      type: GET_COUNTRIES_TO_SHOW,
+      payload: filteredCountriesByRegion.filter((country) =>
+        country.region.toLowerCase().includes(region.toLowerCase())
+      ),
     });
+
+    getRegion(region);
   };
 
   const getCountryByCode = async (code) => {
@@ -100,6 +128,7 @@ const CountriesApp = () => {
         darkMode: state.darkMode,
         error: state.error,
         modal: state.modal,
+        region: state.region,
         getAllCountries,
         getCountriesByTag,
         getCountriesByRegion,

@@ -5,10 +5,10 @@ import {
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
-  GET_COUNTRIES_BY_REGION,
   GET_COUNTRIES_TO_SHOW,
-  GET_COUNTRIES_BY_TAG,
   SHOW_MODAL,
+  GET_REGION,
+  GET_TAG,
 } from "../types";
 
 export const MainReducer = (state, action) => {
@@ -31,22 +31,16 @@ export const MainReducer = (state, action) => {
         countriesToShow: [...action.payload],
       };
 
-    case GET_COUNTRIES_BY_TAG:
+    case GET_REGION:
       return {
         ...state,
-        countriesToShow: state.countries.filter((country) =>
-          country.name.includes(
-            action.payload.charAt(0).toUpperCase() + action.payload.slice(1)
-          )
-        ),
+        region: action.payload,
       };
 
-    case GET_COUNTRIES_BY_REGION:
+    case GET_TAG:
       return {
         ...state,
-        countriesToShow: state.countries.filter(
-          (country) => country.region === action.payload
-        ),
+        tag: action.payload,
       };
 
     case DELETE_CODE_COUNTRY:
