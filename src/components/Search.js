@@ -3,11 +3,14 @@ import { useContext } from "react";
 import { MainContext } from "../context/MainContext";
 import { useForm } from "../hooks/useForm";
 import { ArrowDownIcon, SearchIcon } from "../icons";
+import Dropdown from "./Dropdown";
+import Pills from "./Pills";
 
 const Search = () => {
   const {
     countries,
     modal,
+    pills,
     showModal,
     getCountriesByTag,
     getCountriesByRegion,
@@ -16,6 +19,12 @@ const Search = () => {
   const [formValues, handleInputChange] = useForm({ searchText: "" });
 
   const { searchText } = formValues;
+
+  // check this code and test in reducer
+  const a = pills.map((pill) =>
+    pill.value === "Africa" ? { ...pill, active: false } : pill
+  );
+  console.log(a);
 
   useEffect(() => {
     if (countries) {
@@ -77,83 +86,10 @@ const Search = () => {
           </span>
         </button>
 
-        <div>
-          <ul className="flex my-3 md:my-0 md:mx-3">
-            <li>
-              <button className="bg-blue-dark_blue text-white px-2 py-1 rounded-full text-xs mr-2">
-                Africa X
-              </button>
-            </li>
-            <li>
-              <button className="bg-blue-dark_blue text-white px-2 py-1 rounded-full text-xs mr-2">
-                Americas X
-              </button>
-            </li>
-            <li>
-              <button className="bg-blue-dark_blue text-white px-2 py-1 rounded-full text-xs mr-2">
-                Asia X
-              </button>
-            </li>
-            <li>
-              <button className="bg-blue-dark_blue text-white px-2 py-1 rounded-full text-xs mr-2">
-                Europe X
-              </button>
-            </li>
-            <li>
-              <button className="bg-blue-dark_blue text-white px-2 py-1 rounded-full text-xs mr-2">
-                Oceania X
-              </button>
-            </li>
-          </ul>
-        </div>
+        <div>{pills && <Pills pills={pills} />}</div>
 
         {modal && (
-          <ul className="absolute top-4 w-full sm:w-96 md:w-48 mt-2 p-4 bg-white dark:bg-blue-dark_blue rounded">
-            <li>
-              <input
-                className="w-full text-left cursor-pointer mt-1 bg-white hover:bg-gray-very_light_gray dark:hover:bg-blue-semi_dark_blue dark:bg-blue-dark_blue dark:text-white rounded"
-                type="button"
-                value="Africa"
-                onClick={handleCountriesByRegion}
-              />
-            </li>
-
-            <li>
-              <input
-                className="w-full text-left cursor-pointer mt-1 bg-white hover:bg-gray-very_light_gray dark:hover:bg-blue-semi_dark_blue dark:bg-blue-dark_blue dark:text-white rounded"
-                type="button"
-                value="Americas"
-                onClick={handleCountriesByRegion}
-              />
-            </li>
-
-            <li>
-              <input
-                className="w-full text-left cursor-pointer mt-1 bg-white hover:bg-gray-very_light_gray dark:hover:bg-blue-semi_dark_blue dark:bg-blue-dark_blue dark:text-white rounded"
-                type="button"
-                value="Asia"
-                onClick={handleCountriesByRegion}
-              />
-            </li>
-
-            <li>
-              <input
-                className="w-full text-left cursor-pointer mt-1 bg-white hover:bg-gray-very_light_gray dark:hover:bg-blue-semi_dark_blue dark:bg-blue-dark_blue dark:text-white rounded"
-                type="button"
-                value="Europe"
-                onClick={handleCountriesByRegion}
-              />
-            </li>
-
-            <li>
-              <input
-                className="w-full text-left cursor-pointer mt-1 bg-white hover:bg-gray-very_light_gray dark:hover:bg-blue-semi_dark_blue dark:bg-blue-dark_blue dark:text-white rounded"
-                type="submit"
-                value="Oceania"
-                onClick={handleCountriesByRegion}
-              />
-            </li>
-          </ul>
+          <Dropdown handleCountriesByRegion={handleCountriesByRegion} />
         )}
       </div>
     </>

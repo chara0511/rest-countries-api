@@ -50,7 +50,7 @@ const Main = () => {
 
       <main className="font-sans bg-gray-very_light_gray dark:bg-blue-semi_dark_blue">
         <div className="max-w-screen-xl m-auto px-5 py-10">
-          <Search countries={countriesToShow} />
+          <Search />
 
           {!countriesToShow ? (
             <p className="max-w-screen-xl m-auto">

@@ -14,6 +14,7 @@ import {
   SHOW_MODAL,
   GET_REGION,
   GET_TAG,
+  ACTIVE_PILLS,
 } from "./types";
 
 const CountriesApp = () => {
@@ -24,6 +25,8 @@ const CountriesApp = () => {
     darkMode: false,
     error: null,
     modal: null,
+    // check this code
+    pills: [],
     region: "",
     tag: "",
   };
@@ -89,6 +92,8 @@ const CountriesApp = () => {
       ),
     });
 
+    activePills(region);
+
     getRegion(region);
   };
 
@@ -115,6 +120,10 @@ const CountriesApp = () => {
     dispatch({ type: ACTIVE_DARK_MODE, payload: !state.darkMode });
   };
 
+  const activePills = (region) => {
+    dispatch({ type: ACTIVE_PILLS, payload: region });
+  };
+
   const showModal = () => {
     dispatch({ type: SHOW_MODAL });
   };
@@ -128,6 +137,7 @@ const CountriesApp = () => {
         darkMode: state.darkMode,
         error: state.error,
         modal: state.modal,
+        pills: state.pills,
         region: state.region,
         getAllCountries,
         getCountriesByTag,

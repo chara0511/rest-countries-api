@@ -9,6 +9,7 @@ import {
   SHOW_MODAL,
   GET_REGION,
   GET_TAG,
+  ACTIVE_PILLS,
 } from "../types";
 
 export const MainReducer = (state, action) => {
@@ -29,6 +30,12 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         countriesToShow: [...action.payload],
+      };
+
+    case ACTIVE_PILLS:
+      return {
+        ...state,
+        pills: [...state.pills, { value: action.payload, active: true }],
       };
 
     case GET_REGION:
