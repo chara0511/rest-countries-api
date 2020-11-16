@@ -35,7 +35,10 @@ export const MainReducer = (state, action) => {
     case ACTIVE_PILLS:
       return {
         ...state,
-        pills: [...state.pills, { value: action.payload, active: true }],
+        // change this for array.map i think
+        pills: state.pills.map((pill) =>
+          pill.value === action.payload.value ? action.payload : pill
+        ),
       };
 
     case GET_REGION:

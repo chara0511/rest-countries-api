@@ -20,12 +20,6 @@ const Search = () => {
 
   const { searchText } = formValues;
 
-  // check this code and test in reducer
-  const a = pills.map((pill) =>
-    pill.value === "Africa" ? { ...pill, active: false } : pill
-  );
-  console.log(a);
-
   useEffect(() => {
     if (countries) {
       getCountriesByTag(searchText);

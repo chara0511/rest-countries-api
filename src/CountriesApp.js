@@ -25,8 +25,13 @@ const CountriesApp = () => {
     darkMode: false,
     error: null,
     modal: null,
-    // check this code
-    pills: [],
+    pills: [
+      { value: "Africa", active: false },
+      { value: "Americas", active: false },
+      { value: "Asia", active: false },
+      { value: "Europe", active: false },
+      { value: "Oceania", active: false },
+    ],
     region: "",
     tag: "",
   };
@@ -121,7 +126,7 @@ const CountriesApp = () => {
   };
 
   const activePills = (region) => {
-    dispatch({ type: ACTIVE_PILLS, payload: region });
+    dispatch({ type: ACTIVE_PILLS, payload: { value: region, active: true } });
   };
 
   const showModal = () => {
