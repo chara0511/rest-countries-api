@@ -1,13 +1,19 @@
 import React from "react";
+import { CloseIcon } from "../icons";
 
-const Pill = ({ pill }) => {
+const Pill = ({ pill, handleActivePill }) => {
   return (
     <>
       {pill.active && (
-        <li>
-          <button className="bg-blue-dark_blue text-white px-2 py-1 rounded-full text-xs mr-2">
-            {pill.value} x
-          </button>
+        <li className="relative flex items-center h-8">
+          <input
+            className="bg-blue-dark_blue text-white cursor-pointer px-2 py-1 rounded-full text-xs mr-2"
+            type="button"
+            value={pill.value}
+            onClick={handleActivePill}
+          />
+
+          <CloseIcon />
         </li>
       )}
     </>

@@ -7,6 +7,7 @@ const SunIcon = () => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
+      className="w-5 h-5"
     >
       <path fill="none" d="M0 0h24v24H0z"></path>
       <path

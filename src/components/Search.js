@@ -12,6 +12,7 @@ const Search = () => {
     modal,
     pills,
     showModal,
+    handlePills,
     getCountriesByTag,
     getCountriesByRegion,
   } = useContext(MainContext);
@@ -38,6 +39,12 @@ const Search = () => {
     e.preventDefault();
 
     getCountriesByTag(searchText);
+  };
+
+  const handleActivePill = (e) => {
+    e.preventDefault();
+
+    handlePills(e.target.value);
   };
 
   const handleCountriesByRegion = (e) => {
@@ -80,7 +87,9 @@ const Search = () => {
           </span>
         </button>
 
-        <div>{pills && <Pills pills={pills} />}</div>
+        <div>
+          {pills && <Pills pills={pills} handleActivePill={handleActivePill} />}
+        </div>
 
         {modal && (
           <Dropdown handleCountriesByRegion={handleCountriesByRegion} />

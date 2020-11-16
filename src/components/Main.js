@@ -48,7 +48,7 @@ const Main = () => {
     <div>
       <Navbar />
 
-      <main className="font-sans bg-gray-very_light_gray dark:bg-blue-semi_dark_blue">
+      <main className="bg-gray-very_light_gray dark:bg-blue-semi_dark_blue font-sans transition duration-200 ease-in">
         <div className="max-w-screen-xl m-auto px-5 py-10">
           <Search />
 

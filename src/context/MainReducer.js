@@ -6,10 +6,10 @@ import {
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
   GET_COUNTRIES_TO_SHOW,
-  SHOW_MODAL,
   GET_REGION,
   GET_TAG,
-  ACTIVE_PILLS,
+  HANDLE_PILLS,
+  SHOW_MODAL,
 } from "../types";
 
 export const MainReducer = (state, action) => {
@@ -26,33 +26,6 @@ export const MainReducer = (state, action) => {
         country: action.payload,
       };
 
-    case GET_COUNTRIES_TO_SHOW:
-      return {
-        ...state,
-        countriesToShow: [...action.payload],
-      };
-
-    case ACTIVE_PILLS:
-      return {
-        ...state,
-        // change this for array.map i think
-        pills: state.pills.map((pill) =>
-          pill.value === action.payload.value ? action.payload : pill
-        ),
-      };
-
-    case GET_REGION:
-      return {
-        ...state,
-        region: action.payload,
-      };
-
-    case GET_TAG:
-      return {
-        ...state,
-        tag: action.payload,
-      };
-
     case DELETE_CODE_COUNTRY:
       return {
         ...state,
@@ -64,6 +37,35 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+
+    case GET_COUNTRIES_TO_SHOW:
+      return {
+        ...state,
+        countriesToShow: [...action.payload],
+      };
+
+    case GET_TAG:
+      return {
+        ...state,
+        tag: action.payload,
+      };
+
+    case GET_REGION:
+      return {
+        ...state,
+        region: action.payload,
+      };
+
+    case HANDLE_PILLS:
+      return {
+        ...state,
+        // change this for array.map i think
+        pills: state.pills.map((pill) =>
+          pill.value === action.payload
+            ? { value: action.payload, active: !pill.active }
+            : pill
+        ),
       };
 
     case ACTIVE_DARK_MODE:

@@ -11,10 +11,10 @@ import {
   GET_ALL_COUNTRIES,
   GET_CODE_COUNTRY,
   GET_COUNTRIES_TO_SHOW,
-  SHOW_MODAL,
   GET_REGION,
   GET_TAG,
-  ACTIVE_PILLS,
+  HANDLE_PILLS,
+  SHOW_MODAL,
 } from "./types";
 
 const CountriesApp = () => {
@@ -60,7 +60,6 @@ const CountriesApp = () => {
     });
   };
 
-  //new code
   const getTag = (tag) => {
     dispatch({ type: GET_TAG, payload: tag });
   };
@@ -80,7 +79,6 @@ const CountriesApp = () => {
     getTag(tag);
   };
 
-  //new code
   const getRegion = (region) => {
     dispatch({ type: GET_REGION, payload: region });
   };
@@ -97,7 +95,7 @@ const CountriesApp = () => {
       ),
     });
 
-    activePills(region);
+    handlePills(region);
 
     getRegion(region);
   };
@@ -125,8 +123,8 @@ const CountriesApp = () => {
     dispatch({ type: ACTIVE_DARK_MODE, payload: !state.darkMode });
   };
 
-  const activePills = (region) => {
-    dispatch({ type: ACTIVE_PILLS, payload: { value: region, active: true } });
+  const handlePills = (region) => {
+    dispatch({ type: HANDLE_PILLS, payload: region });
   };
 
   const showModal = () => {
@@ -151,6 +149,7 @@ const CountriesApp = () => {
         getCountriesToShow,
         deleteCountryByCode,
         activeDarkMode,
+        handlePills,
         showModal,
       }}
     >
