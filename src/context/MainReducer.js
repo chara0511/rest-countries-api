@@ -1,6 +1,8 @@
 import {
   ACTIVE_DARK_MODE,
+  ADD_COUNTRIES_BY_REGION,
   DELETE_CODE_COUNTRY,
+  DELETE_COUNTRIES_BY_REGION,
   ERROR_GET_ALL_COUNTRIES,
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
@@ -9,6 +11,7 @@ import {
   GET_REGION,
   GET_TAG,
   HANDLE_PILLS,
+  RESET_PILLS,
   SHOW_MODAL,
 } from "../types";
 
@@ -45,6 +48,20 @@ export const MainReducer = (state, action) => {
         countriesToShow: [...action.payload],
       };
 
+    case ADD_COUNTRIES_BY_REGION:
+      return {
+        ...state,
+        countriesFiltered: [...state.countriesFiltered, ...action.payload],
+      };
+
+    case DELETE_COUNTRIES_BY_REGION:
+      return {
+        ...state,
+        countriesFiltered: state.countriesFiltered.filter(
+          (country) => country.region !== action.payload
+        ),
+      };
+
     case GET_TAG:
       return {
         ...state,
@@ -60,12 +77,17 @@ export const MainReducer = (state, action) => {
     case HANDLE_PILLS:
       return {
         ...state,
-        // change this for array.map i think
         pills: state.pills.map((pill) =>
           pill.value === action.payload
             ? { value: action.payload, active: !pill.active }
             : pill
         ),
+      };
+
+    case RESET_PILLS:
+      return {
+        ...state,
+        pills: action.payload,
       };
 
     case ACTIVE_DARK_MODE:

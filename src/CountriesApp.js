@@ -5,7 +5,9 @@ import { MainContext } from "./context/MainContext";
 import { MainReducer } from "./context/MainReducer";
 import {
   ACTIVE_DARK_MODE,
+  ADD_COUNTRIES_BY_REGION,
   DELETE_CODE_COUNTRY,
+  DELETE_COUNTRIES_BY_REGION,
   ERROR_GET_ALL_COUNTRIES,
   ERROR_GET_COUNTRY,
   GET_ALL_COUNTRIES,
@@ -14,12 +16,14 @@ import {
   GET_REGION,
   GET_TAG,
   HANDLE_PILLS,
+  RESET_PILLS,
   SHOW_MODAL,
 } from "./types";
 
 const CountriesApp = () => {
   const initialState = {
     countries: null,
+    countriesFiltered: [],
     countriesToShow: [],
     country: null,
     darkMode: false,
@@ -65,13 +69,21 @@ const CountriesApp = () => {
   };
 
   const getCountriesByTag = (tag) => {
-    const filteredCountriesByRegion = state.countries.filter((country) =>
-      country.region.toLowerCase().includes(state.region.toLowerCase())
-    );
+    if (state.countriesFiltered.length === 0) {
+      console.log(state.countriesFiltered);
+      return dispatch({
+        type: GET_COUNTRIES_TO_SHOW,
+        payload: state.countries.filter((country) =>
+          country.name.toLowerCase().includes(tag.toLowerCase())
+        ),
+      });
+    }
+
+    console.log(state.countriesFiltered);
 
     dispatch({
       type: GET_COUNTRIES_TO_SHOW,
-      payload: filteredCountriesByRegion.filter((country) =>
+      payload: state.countriesFiltered.filter((country) =>
         country.name.toLowerCase().includes(tag.toLowerCase())
       ),
     });
@@ -84,13 +96,9 @@ const CountriesApp = () => {
   };
 
   const getCountriesByRegion = (region) => {
-    const filteredCountriesByRegion = state.countries.filter((country) =>
-      country.name.toLowerCase().includes(state.tag)
-    );
-
     dispatch({
-      type: GET_COUNTRIES_TO_SHOW,
-      payload: filteredCountriesByRegion.filter((country) =>
+      type: ADD_COUNTRIES_BY_REGION,
+      payload: state.countries.filter((country) =>
         country.region.toLowerCase().includes(region.toLowerCase())
       ),
     });
@@ -98,6 +106,13 @@ const CountriesApp = () => {
     handlePills(region);
 
     getRegion(region);
+  };
+
+  const deleteCountriesByRegion = (region) => {
+    dispatch({
+      type: DELETE_COUNTRIES_BY_REGION,
+      payload: region,
+    });
   };
 
   const getCountryByCode = async (code) => {
@@ -127,6 +142,10 @@ const CountriesApp = () => {
     dispatch({ type: HANDLE_PILLS, payload: region });
   };
 
+  const resetPills = () => {
+    dispatch({ type: RESET_PILLS, payload: initialState.pills });
+  };
+
   const showModal = () => {
     dispatch({ type: SHOW_MODAL });
   };
@@ -136,21 +155,24 @@ const CountriesApp = () => {
       value={{
         countries: state.countries,
         countriesToShow: state.countriesToShow,
+        countriesFiltered: state.countriesFiltered,
         country: state.country,
         darkMode: state.darkMode,
         error: state.error,
         modal: state.modal,
         pills: state.pills,
         region: state.region,
+        activeDarkMode,
         getAllCountries,
         getCountriesByTag,
         getCountriesByRegion,
-        getCountryByCode,
         getCountriesToShow,
+        getCountryByCode,
         deleteCountryByCode,
-        activeDarkMode,
         handlePills,
+        resetPills,
         showModal,
+        deleteCountriesByRegion,
       }}
     >
       <MainRouter />

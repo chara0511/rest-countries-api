@@ -23,6 +23,14 @@ const Main = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // useEffect(() => {
+  //   if (countries) {
+  //     getCountriesToShow(countries);
+  //   }
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [countries]);
+
   const countriesPerPage = 8;
 
   const loopWithSlice = (start, end) => {
@@ -52,7 +60,7 @@ const Main = () => {
         <div className="max-w-screen-xl m-auto px-5 py-10">
           <Search />
 
-          {!countriesToShow ? (
+          {!countries ? (
             <p className="max-w-screen-xl m-auto">
               {error ? error : "loading..."}
             </p>
@@ -61,7 +69,7 @@ const Main = () => {
               <Countries countries={countriesToShow} />
 
               <MoreCountries
-                countries={countries}
+                countries={countriesToShow}
                 next={next}
                 handleShowMoreCountries={handleShowMoreCountries}
               />

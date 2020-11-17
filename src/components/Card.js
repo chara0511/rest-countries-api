@@ -1,13 +1,18 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { MainContext } from "../context/MainContext";
 import { formatNumber } from "../utils";
 
 const Card = ({ country }) => {
+  const { resetPills } = useContext(MainContext);
+
   return (
     <div className="max-w-xl mb-12">
       <div>
         <Link to={`country/${country.alpha2Code}`}>
           <div
+            onClick={resetPills}
             className="rounded-t-md bg-cover bg-center h-56 2xl:h-40 bg-no-repeat"
             style={{ backgroundImage: `url(${country.flag})` }}
           />
