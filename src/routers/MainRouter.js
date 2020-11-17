@@ -14,7 +14,9 @@ const MainRouter = () => {
 
   return (
     <Router>
-      <div className={`${darkMode ? "scheme-dark" : ""}`}>
+      <div
+        className={`${darkMode ? "scheme-dark" : ""} h-screen flex flex-col`}
+      >
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/country/:id" component={Country} />

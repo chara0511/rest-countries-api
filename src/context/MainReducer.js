@@ -11,7 +11,7 @@ import {
   GET_REGION,
   GET_TAG,
   HANDLE_PILLS,
-  RESET_PILLS,
+  RESET_VALUES,
   SHOW_MODAL,
 } from "../types";
 
@@ -84,10 +84,11 @@ export const MainReducer = (state, action) => {
         ),
       };
 
-    case RESET_PILLS:
+    case RESET_VALUES:
       return {
         ...state,
-        pills: action.payload,
+        countriesFiltered: action.payload.countriesFiltered,
+        pills: action.payload.pills,
       };
 
     case ACTIVE_DARK_MODE:

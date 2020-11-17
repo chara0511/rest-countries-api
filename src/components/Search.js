@@ -23,6 +23,7 @@ const Search = () => {
   useEffect(() => {
     if (countries) {
       getCountriesByTag(searchText);
+      console.log(searchText);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

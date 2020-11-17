@@ -16,7 +16,7 @@ import {
   GET_REGION,
   GET_TAG,
   HANDLE_PILLS,
-  RESET_PILLS,
+  RESET_VALUES,
   SHOW_MODAL,
 } from "./types";
 
@@ -69,8 +69,9 @@ const CountriesApp = () => {
   };
 
   const getCountriesByTag = (tag) => {
+    getTag(tag);
+
     if (state.countriesFiltered.length === 0) {
-      console.log(state.countriesFiltered);
       return dispatch({
         type: GET_COUNTRIES_TO_SHOW,
         payload: state.countries.filter((country) =>
@@ -79,16 +80,12 @@ const CountriesApp = () => {
       });
     }
 
-    console.log(state.countriesFiltered);
-
     dispatch({
       type: GET_COUNTRIES_TO_SHOW,
       payload: state.countriesFiltered.filter((country) =>
         country.name.toLowerCase().includes(tag.toLowerCase())
       ),
     });
-
-    getTag(tag);
   };
 
   const getRegion = (region) => {
@@ -96,16 +93,16 @@ const CountriesApp = () => {
   };
 
   const getCountriesByRegion = (region) => {
+    getRegion(region);
+
+    handlePills(region);
+
     dispatch({
       type: ADD_COUNTRIES_BY_REGION,
       payload: state.countries.filter((country) =>
         country.region.toLowerCase().includes(region.toLowerCase())
       ),
     });
-
-    handlePills(region);
-
-    getRegion(region);
   };
 
   const deleteCountriesByRegion = (region) => {
@@ -142,8 +139,14 @@ const CountriesApp = () => {
     dispatch({ type: HANDLE_PILLS, payload: region });
   };
 
-  const resetPills = () => {
-    dispatch({ type: RESET_PILLS, payload: initialState.pills });
+  const resetValues = () => {
+    dispatch({
+      type: RESET_VALUES,
+      payload: {
+        countriesFiltered: initialState.countriesFiltered,
+        pills: initialState.pills,
+      },
+    });
   };
 
   const showModal = () => {
@@ -170,7 +173,7 @@ const CountriesApp = () => {
         getCountryByCode,
         deleteCountryByCode,
         handlePills,
-        resetPills,
+        resetValues,
         showModal,
         deleteCountriesByRegion,
       }}

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { MainContext } from "../context/MainContext";
 import Countries from "./Countries";
 import Navbar from "./Navbar";
-import MoreCountries from "./MoreCountries";
 import Search from "./Search";
 
 const Main = () => {
@@ -22,14 +21,6 @@ const Main = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // useEffect(() => {
-  //   if (countries) {
-  //     getCountriesToShow(countries);
-  //   }
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [countries]);
 
   const countriesPerPage = 8;
 
@@ -53,10 +44,10 @@ const Main = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar />
 
-      <main className="bg-gray-very_light_gray dark:bg-blue-semi_dark_blue font-sans transition duration-200 ease-in">
+      <main className="flex-1 bg-gray-very_light_gray dark:bg-blue-semi_dark_blue font-sans transition duration-200 ease-in">
         <div className="max-w-screen-xl m-auto px-5 py-10">
           <Search />
 
@@ -66,9 +57,7 @@ const Main = () => {
             </p>
           ) : (
             <>
-              <Countries countries={countriesToShow} />
-
-              <MoreCountries
+              <Countries
                 countries={countriesToShow}
                 next={next}
                 handleShowMoreCountries={handleShowMoreCountries}
@@ -77,7 +66,7 @@ const Main = () => {
           )}
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

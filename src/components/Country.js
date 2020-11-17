@@ -21,10 +21,10 @@ const Country = () => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <>
       <Navbar />
 
-      <div className=" bg-gray-very_light_gray dark:bg-blue-semi_dark_blue dark:text-gray-very_light_gray">
+      <div className="flex-1 bg-gray-very_light_gray dark:bg-blue-semi_dark_blue dark:text-gray-very_light_gray">
         <div className="max-w-screen-xl m-auto px-5 py-5">
           <Link
             to={"/"}
@@ -107,7 +107,7 @@ const Country = () => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

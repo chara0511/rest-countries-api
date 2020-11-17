@@ -2,17 +2,17 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MainContext } from "../context/MainContext";
-import { formatNumber } from "../utils";
+import { formatName, formatNumber } from "../utils";
 
 const Card = ({ country }) => {
-  const { resetPills } = useContext(MainContext);
+  const { resetValues } = useContext(MainContext);
 
   return (
     <div className="max-w-xl mb-12">
       <div>
         <Link to={`country/${country.alpha2Code}`}>
           <div
-            onClick={resetPills}
+            onClick={resetValues}
             className="rounded-t-md bg-cover bg-center h-56 2xl:h-40 bg-no-repeat"
             style={{ backgroundImage: `url(${country.flag})` }}
           />
@@ -20,7 +20,7 @@ const Card = ({ country }) => {
       </div>
 
       <div className="bg-white rounded-b-md shadow-xs p-5 dark:bg-blue-dark_blue dark:text-gray-very_light_gray">
-        <h1 className="text-xl font-extrabold">{country.name}</h1>
+        <h1 className="text-xl font-extrabold">{formatName(country.name)}</h1>
         <div className="py-5">
           <p className="font-semibold">
             Population:{" "}
