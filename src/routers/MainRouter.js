@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Country from "../components/Country";
+import Footer from "../components/Footer";
 import Main from "../components/Main";
 import { MainContext } from "../context/MainContext";
 
@@ -22,6 +23,8 @@ const MainRouter = () => {
           <Route exact path="/country/:id" component={Country} />
           <Redirect to="/" />
         </Switch>
+
+        <Footer />
       </div>
     </Router>
   );

@@ -24,8 +24,8 @@ const Country = () => {
     <>
       <Navbar />
 
-      <div className="flex-1 bg-gray-very_light_gray dark:bg-blue-semi_dark_blue dark:text-gray-very_light_gray">
-        <div className="max-w-screen-xl m-auto px-5 py-5">
+      <div className="flex-1 bg-gray-very_light_gray px-5 py-5 dark:bg-blue-semi_dark_blue dark:text-gray-very_light_gray">
+        <div className="max-w-screen-xl m-auto ">
           <Link
             to={"/"}
             className="flex justify-center py-2 w-24 md:w-48 my-12 rounded shadow-normal dark:bg-blue-dark_blue"
@@ -40,9 +40,9 @@ const Country = () => {
         {!country ? (
           "loading"
         ) : (
-          <div className="w-full max-w-screen-xl m-auto px-5 md:flex md:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
+          <div className="w-full max-w-screen-xl m-auto md:flex md:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
             <img
-              className="m-auto sm:w-104 md:w-120 lg:w-wrapper lg:h-104"
+              className="m-auto sm:w-104 md:w-120 lg:w-wrapper"
               src={country.flag}
               alt=""
             />
@@ -94,7 +94,7 @@ const Country = () => {
                 </li>
               </ul>
 
-              <div className="lg:my-16">
+              <div className="lg:my-16 lg:flex lg:items-center">
                 <h3 className="font-semibold my-2 sm:my-4">
                   Border Countries:
                 </h3>
@@ -102,7 +102,7 @@ const Country = () => {
                 <ul className="flex flex-wrap justify-center">
                   {country.borders.map((border) => (
                     <li
-                      className="bg-blue-dark_blue text-white px-3 leading-6 rounded-full text-xs mr-2 mb-1"
+                      className="bg-blue-dark_blue text-white px-3 leading-6 rounded-full text-xs mr-2 mb-1 lg:mr-0 lg:ml-2"
                       key={border}
                     >
                       {border}

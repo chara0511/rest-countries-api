@@ -53,6 +53,7 @@ const Search = () => {
           className="w-full md:w-120 pl-16 pr-8 my-2 py-4 text-sm dark:bg-blue-dark_blue dark:text-white rounded"
           type="text"
           placeholder="Search for a country..."
+          autoComplete="off"
           name="searchText"
           value={searchText}
           onChange={handleInputChange}
