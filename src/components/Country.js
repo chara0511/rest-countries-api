@@ -40,14 +40,14 @@ const Country = () => {
         {!country ? (
           "loading"
         ) : (
-          <div className="max-w-screen-xl m-auto px-5 sm:flex sm:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
+          <div className="w-full max-w-screen-xl m-auto px-5 md:flex md:justify-between gap-4 md:gap-8 lg:gap-16 2xl:gap-32">
             <img
-              className="sm:w-104 md:w-120 lg:w-wrapper lg:h-104"
+              className="m-auto sm:w-104 md:w-120 lg:w-wrapper lg:h-104"
               src={country.flag}
               alt=""
             />
 
-            <div className="flex-auto">
+            <div className="flex-1">
               <h1 className="text-2xl font-bold my-8">{country.name}</h1>
 
               <ul className="column-count">
@@ -95,11 +95,18 @@ const Country = () => {
               </ul>
 
               <div className="lg:my-16">
-                <h3 className="font-semibold">Border Countries:</h3>
+                <h3 className="font-semibold my-2 sm:my-4">
+                  Border Countries:
+                </h3>
 
-                <ul>
+                <ul className="flex flex-wrap justify-center">
                   {country.borders.map((border) => (
-                    <li key={border}>{border}</li>
+                    <li
+                      className="bg-blue-dark_blue text-white px-3 leading-6 rounded-full text-xs mr-2 mb-1"
+                      key={border}
+                    >
+                      {border}
+                    </li>
                   ))}
                 </ul>
               </div>

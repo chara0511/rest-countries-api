@@ -27,6 +27,14 @@ const Main = () => {
 
   const loopWithSlice = (start, end) => {
     if (countries) {
+      countries.sort((a, b) =>
+        a.name.toLowerCase() < b.name.toLowerCase()
+          ? -1
+          : a.name.toLowerCase() > b.name.toLowerCase()
+          ? 1
+          : 0
+      );
+
       const slicedCountries = countries.slice(start, end);
 
       getCountriesToShow(slicedCountries);
