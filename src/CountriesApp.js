@@ -15,6 +15,7 @@ import {
   GET_COUNTRIES_TO_SHOW,
   GET_REGION,
   GET_TAG,
+  HANLDE_LOAD_MORE,
   HANDLE_PILLS,
   RESET_VALUES,
   SHOW_MODAL,
@@ -29,6 +30,7 @@ const CountriesApp = () => {
     darkMode: false,
     error: null,
     modal: null,
+    loadMore: true,
     pills: [
       { value: "Africa", active: false },
       { value: "Americas", active: false },
@@ -75,7 +77,7 @@ const CountriesApp = () => {
       return dispatch({
         type: GET_COUNTRIES_TO_SHOW,
         payload: state.countries.filter((country) =>
-          country.name.toLowerCase().includes(tag.toLowerCase())
+          country.name.toLowerCase().includes(tag.trim().toLowerCase())
         ),
       });
     }
@@ -83,7 +85,7 @@ const CountriesApp = () => {
     dispatch({
       type: GET_COUNTRIES_TO_SHOW,
       payload: state.countriesFiltered.filter((country) =>
-        country.name.toLowerCase().includes(tag.toLowerCase())
+        country.name.toLowerCase().includes(tag.trim().toLowerCase())
       ),
     });
   };
@@ -135,6 +137,10 @@ const CountriesApp = () => {
     dispatch({ type: ACTIVE_DARK_MODE, payload: !state.darkMode });
   };
 
+  const handleLoadMore = () => {
+    dispatch({ type: HANLDE_LOAD_MORE });
+  };
+
   const handlePills = (region) => {
     dispatch({ type: HANDLE_PILLS, payload: region });
   };
@@ -144,6 +150,7 @@ const CountriesApp = () => {
       type: RESET_VALUES,
       payload: {
         countriesFiltered: initialState.countriesFiltered,
+        loadMore: initialState.loadMore,
         pills: initialState.pills,
       },
     });
@@ -162,6 +169,7 @@ const CountriesApp = () => {
         country: state.country,
         darkMode: state.darkMode,
         error: state.error,
+        loadMore: state.loadMore,
         modal: state.modal,
         pills: state.pills,
         region: state.region,
@@ -172,6 +180,7 @@ const CountriesApp = () => {
         getCountriesToShow,
         getCountryByCode,
         deleteCountryByCode,
+        handleLoadMore,
         handlePills,
         resetValues,
         showModal,

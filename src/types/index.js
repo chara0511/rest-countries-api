@@ -9,6 +9,7 @@ export const DELETE_COUNTRIES_BY_REGION = "DELETE_COUNTRIES_BY_REGION";
 
 export const GET_TAG = "GET_TAG";
 export const GET_REGION = "GET_REGION";
+export const HANLDE_LOAD_MORE = "HANLDE_LOAD_MORE";
 export const HANDLE_PILLS = "HANDLE_PILLS";
 export const RESET_VALUES = "RESET_VALUES";
 export const ACTIVE_DARK_MODE = "ACTIVE_DARK_MODE";

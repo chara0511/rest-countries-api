@@ -7,13 +7,14 @@ import Search from "./Search";
 const Main = () => {
   const {
     countries,
+    countriesFiltered,
     countriesToShow,
     error,
     getAllCountries,
     getCountriesToShow,
+    handleLoadMore,
   } = useContext(MainContext);
 
-  //const [countriesToShow, setCountriesToShow] = useState([]);
   const [next, setNext] = useState(8);
 
   useEffect(() => {
@@ -42,6 +43,16 @@ const Main = () => {
     loopWithSlice(0, next + countriesPerPage);
     setNext(next + countriesPerPage);
   };
+
+  useEffect(() => {
+    if (countriesFiltered.length === 0) {
+      return;
+    }
+
+    return handleLoadMore();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countriesFiltered, next]);
 
   return (
     <>

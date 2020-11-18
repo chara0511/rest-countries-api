@@ -19,7 +19,6 @@ const Countries = ({ countries, next, handleShowMoreCountries }) => {
           </div>
 
           <MoreCountries
-            countries={countries}
             next={next}
             handleShowMoreCountries={handleShowMoreCountries}
           />

@@ -10,6 +10,7 @@ import {
   GET_COUNTRIES_TO_SHOW,
   GET_REGION,
   GET_TAG,
+  HANLDE_LOAD_MORE,
   HANDLE_PILLS,
   RESET_VALUES,
   SHOW_MODAL,
@@ -74,6 +75,12 @@ export const MainReducer = (state, action) => {
         region: action.payload,
       };
 
+    case HANLDE_LOAD_MORE:
+      return {
+        ...state,
+        loadMore: false,
+      };
+
     case HANDLE_PILLS:
       return {
         ...state,
@@ -88,6 +95,7 @@ export const MainReducer = (state, action) => {
       return {
         ...state,
         countriesFiltered: action.payload.countriesFiltered,
+        loadMore: action.payload.loadMore,
         pills: action.payload.pills,
       };
 
