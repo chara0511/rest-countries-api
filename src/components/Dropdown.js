@@ -7,7 +7,7 @@ const Dropdown = () => {
   const { pills } = useContext(MainContext);
 
   return (
-    <ul className="absolute top-4 w-full sm:w-96 md:w-48 mt-2 p-4 bg-white dark:bg-blue-dark_blue rounded">
+    <ul className="absolute mt-2 md:right-0 w-48 p-4 bg-white dark:bg-blue-dark_blue rounded z-10">
       {pills.map((pill, i) => (
         <Item key={i} pill={pill} />
       ))}
