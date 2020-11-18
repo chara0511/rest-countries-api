@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer class="w-full py-6 text-center text-xs md:text-sm xl:text-base bg-white dark:bg-blue-very_dark_blue dark:text-blue-dark_blue">
+    <footer className="w-full py-6 text-center text-xs md:text-sm xl:text-base bg-white dark:bg-blue-very_dark_blue dark:text-blue-dark_blue">
       <p className="h-6">
         Challenge by{" "}
         <a

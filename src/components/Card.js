@@ -11,10 +11,11 @@ const Card = ({ country }) => {
     <div className="max-w-xl mb-12">
       <div>
         <Link to={`country/${country.alpha2Code}`}>
-          <div
+          <img
             onClick={resetValues}
-            className="rounded-t-md bg-cover bg-center h-56 2xl:h-40 bg-no-repeat"
-            style={{ backgroundImage: `url(${country.flag})` }}
+            className="rounded-t-md h-56 2xl:h-40 w-full object-cover"
+            src={country.flag}
+            alt={`${country.name} flag`}
           />
         </Link>
       </div>

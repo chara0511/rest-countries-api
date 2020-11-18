@@ -41,7 +41,6 @@ const Search = () => {
   return (
     <>
       <form
-        action=""
         className="relative md:flex md:justify-between"
         onSubmit={handleSubmit}
       >
@@ -54,10 +53,13 @@ const Search = () => {
           type="text"
           placeholder="Search for a country..."
           autoComplete="off"
+          aria-label="Search for a country"
           name="searchText"
           value={searchText}
           onChange={handleInputChange}
         />
+
+        <button className="hidden">Submit</button>
       </form>
 
       <div className="relative flex flex-col md:flex-row items-center text-sm my-2">
