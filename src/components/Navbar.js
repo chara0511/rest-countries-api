@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative dark:bg-blue-dark_blue shadow-normal transition duration-200 ease-in">
+    <div className="relative dark:bg-blue-dark_blue shadow transition duration-200 ease-in">
       <div className="flex justify-between px-5 py-10 max-w-screen-xl m-auto items-center">
         <h1 className="text-lg font-extrabold text-blue-dark_blue dark:text-white">
           Where in the world?

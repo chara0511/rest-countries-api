@@ -28,7 +28,7 @@ const Country = () => {
         <div className="max-w-screen-xl m-auto ">
           <Link
             to={"/"}
-            className="flex justify-center py-2 w-24 md:w-48 my-12 rounded shadow-normal dark:bg-blue-dark_blue"
+            className="flex justify-center py-2 w-24 md:w-48 my-12 rounded shadow dark:bg-blue-dark_blue"
           >
             <span className="mr-1">
               <ArrowBackIcon />

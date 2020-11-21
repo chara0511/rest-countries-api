@@ -3,8 +3,8 @@ const selectorParser = require("postcss-selector-parser");
 
 module.exports = {
   future: {
-    //removeDeprecatedGapUtilities: true,
-    //purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
   purge: ["./src/**/*.html", "./src/**/*.jsx", "./src/**/*.js"],
   theme: {

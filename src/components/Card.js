@@ -20,9 +20,11 @@ const Card = ({ country }) => {
         </Link>
       </div>
 
-      <div className="bg-white rounded-b-md shadow-xs p-5 dark:bg-blue-dark_blue dark:text-gray-very_light_gray">
-        <h1 className="text-xl font-extrabold">{formatName(country.name)}</h1>
-        <div className="py-5">
+      <div className="bg-white rounded-b-md shadow-xs px-5 py-2 dark:bg-blue-dark_blue dark:text-gray-very_light_gray">
+        <h1 className="text-xl font-extrabold sm:h-16 flex items-center">
+          {formatName(country.name)}
+        </h1>
+        <div className="py-4">
           <p className="font-semibold">
             Population:{" "}
             <span className="font-light">
